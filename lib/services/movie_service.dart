@@ -56,4 +56,36 @@ class MovieService {
       throw Exception('Failed to load upcoming movies');
     }
   }
+
+  Future<List<Movie>> getWatchedMovies() async{
+    final response = await http.get(
+        Uri.parse(Env.WATCHED),
+        headers: {
+          'Authorization': 'Bearer ${Env.TOKEN}',
+          'accept': 'application/json',
+        }
+    );
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['items'] as List;
+      return decodedData.map((movie) => Movie.fromJson(movie)).toList();
+    } else {
+      throw Exception('Failed to load watched movies');
+    }
+  }
+
+  Future<List<Movie>> getToWatchMovies() async{
+    final response = await http.get(
+        Uri.parse(Env.TO_WATCHED),
+        headers: {
+          'Authorization': 'Bearer ${Env.TOKEN}',
+          'accept': 'application/json',
+        }
+    );
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['items'] as List;
+      return decodedData.map((movie) => Movie.fromJson(movie)).toList();
+    } else {
+      throw Exception('Failed to load watched movies');
+    }
+  }
 }

@@ -57,7 +57,7 @@ class DetailScreen extends StatelessWidget {
             Text(
               movie.overview,
               style: GoogleFonts.roboto(
-                fontSize: 25,
+                fontSize: 20,
                 fontWeight: FontWeight.w400,
               ),
               textAlign: TextAlign.start,
@@ -94,6 +94,7 @@ class DetailScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  // TODO add list buttons
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(

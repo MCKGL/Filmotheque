@@ -18,6 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<List<Movie>> trendingMovies;
   late Future<List<Movie>> topRatedMovies;
   late Future<List<Movie>> upcomingMovies;
+  late Future<List<Movie>> watchedMovies;
+  late Future<List<Movie>> toWatchedMovies;
 
   @override
   void initState() {
@@ -25,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
     trendingMovies = MovieService().getTrendingMovies();
     topRatedMovies = MovieService().getTopRatedMovies();
     upcomingMovies = MovieService().getUpcomingMovies();
+    watchedMovies = MovieService().getWatchedMovies();
+    toWatchedMovies = MovieService().getToWatchMovies();
   }
 
   @override
@@ -81,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  'Top Rated Movies',
+                  'Movies To Watch',
                   style: GoogleFonts.aBeeZee(
                     fontSize: 20.0,
                   ),
@@ -91,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.only(top: 8.0),
                 child: SizedBox(
                   child: FutureBuilder(
-                      future: topRatedMovies,
+                      future: toWatchedMovies,
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
                           return Center(
@@ -112,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  'Upcoming Movies',
+                  'Movies Watched',
                   style: GoogleFonts.aBeeZee(
                     fontSize: 20.0,
                   ),
@@ -122,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.only(top: 8.0),
                 child: SizedBox(
                   child: FutureBuilder(
-                      future: upcomingMovies,
+                      future: watchedMovies,
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
                           return Center(
