@@ -1,6 +1,6 @@
-import 'colors.dart';
-import 'screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'colors.dart';
+import 'widgets/nav_bar.dart';
 
 
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colours.scaffoldBgColor,
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const NavBar(),
     );
   }
 }

@@ -20,9 +20,17 @@ class DetailScreen extends StatelessWidget {
       SliverAppBar.large(
         leading: const BackButton(),
         backgroundColor: Colours.scaffoldBgColor,
-        expandedHeight: 500,
+        expandedHeight: 350,
         pinned: true,
         floating: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.collections),
+            onPressed: () {
+              // TODO Handle the action here
+            },
+          ),
+        ],
         flexibleSpace: FlexibleSpaceBar(
             title: Text(
               movie.title,
@@ -37,7 +45,7 @@ class DetailScreen extends StatelessWidget {
               child: Image.network(
                 '${Env.IMAGE_PATH}${movie.backdropPath}',
                 filterQuality: FilterQuality.high,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             )),
       ),
@@ -94,21 +102,45 @@ class DetailScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // TODO add list buttons
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(children: [
+                          IconButton(
+                            icon: const Icon(Icons.bookmark_border, color: Colors.grey),
+                            onPressed: () {
+                              // TODO Handle the action here
+                            },
+                          ),
+                        ],
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const Row(children: [
-                      Icon(
-                          Icons.star, color: Colors.yellow
+                      const SizedBox(width: 10),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(children: [
+                          IconButton(
+                            icon: const Icon(Icons.check_circle_outline, color: Colors.grey),
+                            onPressed: () {
+                              // TODO Handle the action here
+                            },
+                          ),
+                        ],
+                        ),
                       ),
                     ],
-                    ),
                   ),
                 ],
               ),

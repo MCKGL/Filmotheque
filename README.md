@@ -4,12 +4,12 @@ This is a movie management application built with Flutter. It utilizes the TMDB 
 
 ## Features
 
-- **Movie Lists**: Users can consult their watched and to-watch movie lists.
+- **Movie Lists**: Users can consult their watched, to-watch and collection movie lists.
 - **Movie Details**: Detailed information about each movie is available, including the release date, overview, and more.
+- **Movie Search**: A search feature will be implemented to allow users to find specific movies.
 
 ## Future Improvements
 
-- **Movie Search**: A search feature will be implemented to allow users to find specific movies.
 - **Add to List**: Users will be able to add movies to their watched or to-watch lists.
 - **Remove from List**: Users will be able to remove movies from their lists.
 

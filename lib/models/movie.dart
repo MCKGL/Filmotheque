@@ -29,7 +29,7 @@ class Movie {
       originalTitle: json['original_title'],
       overview: json['overview'],
       posterPath: json['poster_path'],
-      backdropPath: json['backdrop_path'],
+      backdropPath: json['backdrop_path'] ?? json['poster_path'],
       releaseDate: DateTime.parse(json['release_date']),
     );
   }

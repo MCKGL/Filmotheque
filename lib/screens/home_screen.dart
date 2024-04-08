@@ -1,4 +1,4 @@
-import 'package:filmotheque/widgets/list_widget.dart';
+import 'package:filmotheque/widgets/scroll_widget.dart';
 import 'package:filmotheque/widgets/slider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         } else {
                           if (snapshot.hasData) {
-                            return ListWidget(snapshot: snapshot);
+                            return ScrollWidget(snapshot: snapshot);
                           } else {
                             return const Center(
                               child: CircularProgressIndicator(),
@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         } else {
                           if (snapshot.hasData) {
-                            return ListWidget(snapshot: snapshot);
+                            return ScrollWidget(snapshot: snapshot);
                           } else {
                             return const Center(
                               child: CircularProgressIndicator(),
