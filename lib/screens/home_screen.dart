@@ -1,3 +1,4 @@
+import 'package:filmotheque/widgets/nav_bar.dart';
 import 'package:filmotheque/widgets/scroll_widget.dart';
 import 'package:filmotheque/widgets/slider_widget.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        title: Container(
+        title: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Image.asset(
             'assets/logo.png',
