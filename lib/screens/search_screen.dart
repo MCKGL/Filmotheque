@@ -1,3 +1,4 @@
+import 'package:filmotheque/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:filmotheque/services/movie_service.dart';
 import 'package:filmotheque/models/movie.dart';
@@ -39,6 +40,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
       ),
+      drawer: const AppDrawer(),
       body: ListWidget(movies: _searchResults),
     );
   }

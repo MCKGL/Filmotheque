@@ -1,5 +1,6 @@
 import 'package:filmotheque/models/movie.dart';
 import 'package:filmotheque/services/movie_service.dart';
+import 'package:filmotheque/widgets/app_drawer.dart';
 import 'package:filmotheque/widgets/list_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
       appBar: AppBar(
         title: const Text('Collection'),
       ),
+      drawer: const AppDrawer(),
       body: FutureBuilder<List<Movie>>(
         future: _collection,
         builder: (context, snapshot) {

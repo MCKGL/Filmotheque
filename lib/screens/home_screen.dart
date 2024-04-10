@@ -1,4 +1,4 @@
-import 'package:filmotheque/widgets/nav_bar.dart';
+import 'package:filmotheque/widgets/app_drawer.dart';
 import 'package:filmotheque/widgets/scroll_widget.dart';
 import 'package:filmotheque/widgets/slider_widget.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         centerTitle: true,
       ),
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
