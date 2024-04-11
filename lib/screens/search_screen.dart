@@ -39,6 +39,7 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
         ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       drawer: const AppDrawer(),
       body: ListWidget(movies: _searchResults),

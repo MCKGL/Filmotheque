@@ -1,11 +1,11 @@
-import 'package:filmotheque/colors.dart';
 import 'package:filmotheque/env.dart';
 import 'package:filmotheque/models/movie.dart';
+import 'package:filmotheque/services/movie_service.dart';
 import 'package:filmotheque/utils/format_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   const DetailScreen({
     super.key,
     required this.movie,
@@ -14,26 +14,70 @@ class DetailScreen extends StatelessWidget {
   final Movie movie;
 
   @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  bool _isInCollection = false;
+  bool _isInToWatch = false;
+  bool _isInWatched = false;
+  final _movieService = MovieService();
+
+  @override
+  void initState() {
+    super.initState();
+    _checkIfMovieInList(
+        Env.COLLECTION_LIST_ID, (value) => _isInCollection = value);
+    _checkIfMovieInList(
+        Env.TO_WATCH_LIST_ID, (value) => _isInToWatch = value);
+    _checkIfMovieInList(Env.WATCHED_LIST_ID, (value) => _isInWatched = value);
+  }
+
+  Future<void> _checkIfMovieInList(
+      int listId, ValueSetter<bool> setStateValue) async {
+    bool isInList = await _movieService.isMovieInList(listId, widget.movie.id);
+    setState(() {
+      setStateValue(isInList);
+    });
+  }
+
+  Future<void> _toggleMovieInList(int listId, ValueGetter<bool> getStateValue,
+      ValueSetter<bool> setStateValue) async {
+    if (getStateValue()) {
+      await _movieService.removeMovieFromList(listId, widget.movie.id);
+    } else {
+      await _movieService.addMovieToList(listId, widget.movie.id);
+    }
+    setState(() {
+      setStateValue(!getStateValue());
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: CustomScrollView(slivers: [
       SliverAppBar.large(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: const BackButton(),
-        backgroundColor: Colours.scaffoldBgColor,
         expandedHeight: 350,
         pinned: true,
         floating: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.collections),
+            icon: Icon(
+              Icons.collections,
+              color: _isInCollection ? Colors.blue : Colors.grey,
+            ),
             onPressed: () {
-              // TODO Handle the action here
+              _toggleMovieInList(Env.COLLECTION_LIST_ID, () => _isInCollection,
+                  (value) => _isInCollection = value);
             },
           ),
         ],
         flexibleSpace: FlexibleSpaceBar(
             title: Text(
-              movie.title,
+              widget.movie.title,
               style: GoogleFonts.belleza(
                   fontSize: 17, fontWeight: FontWeight.w600),
             ),
@@ -43,7 +87,7 @@ class DetailScreen extends StatelessWidget {
                 bottomRight: Radius.circular(24),
               ),
               child: Image.network(
-                '${Env.IMAGE_PATH}${movie.backdropPath}',
+                '${Env.IMAGE_PATH}${widget.movie.backdropPath}',
                 filterQuality: FilterQuality.high,
                 fit: BoxFit.contain,
               ),
@@ -63,7 +107,7 @@ class DetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              movie.overview,
+              widget.movie.overview,
               style: GoogleFonts.roboto(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
@@ -93,7 +137,8 @@ class DetailScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          FormatTools.formatDateToString(movie.releaseDate),
+                          FormatTools.formatDateToString(
+                              widget.movie.releaseDate),
                           style: GoogleFonts.roboto(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
@@ -112,14 +157,21 @@ class DetailScreen extends StatelessWidget {
                           ),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Row(children: [
-                          IconButton(
-                            icon: const Icon(Icons.bookmark_border, color: Colors.grey),
-                            onPressed: () {
-                              // TODO Handle the action here
-                            },
-                          ),
-                        ],
+                        child: Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(
+                                Icons.bookmark_border,
+                                color: _isInToWatch ? Colors.red : Colors.grey,
+                              ),
+                              onPressed: () {
+                                _toggleMovieInList(
+                                    Env.TO_WATCH_LIST_ID,
+                                    () => _isInToWatch,
+                                    (value) => _isInToWatch = value);
+                              },
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -130,14 +182,22 @@ class DetailScreen extends StatelessWidget {
                           ),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Row(children: [
-                          IconButton(
-                            icon: const Icon(Icons.check_circle_outline, color: Colors.grey),
-                            onPressed: () {
-                              // TODO Handle the action here
-                            },
-                          ),
-                        ],
+                        child: Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(
+                                Icons.check_circle_outline,
+                                color:
+                                    _isInWatched ? Colors.green : Colors.grey,
+                              ),
+                              onPressed: () {
+                                _toggleMovieInList(
+                                    Env.WATCHED_LIST_ID,
+                                    () => _isInWatched,
+                                    (value) => _isInWatched = value);
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ],

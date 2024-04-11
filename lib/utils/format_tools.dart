@@ -7,7 +7,6 @@ class FormatTools {
       final String formattedDate = formatter.format(date);
       return formattedDate;
     } catch (e) {
-      print('Error formatting date: $e');
       return date.toString();
     }
   }

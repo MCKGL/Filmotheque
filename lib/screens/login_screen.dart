@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: <Widget>[
                 Text(
                   'Username'.toUpperCase(),
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                   textAlign: TextAlign.start,
                 ),
                 Padding(
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Enter your username',
-                      hintStyle: Theme.of(context).textTheme.subtitle1,
+                      hintStyle: Theme.of(context).textTheme.titleMedium,
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.blue),
                       ),
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20.0),
                 Text(
                   'Password'.toUpperCase(),
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                   textAlign: TextAlign.start,
                 ),
                 Padding(
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Enter your password',
-                      hintStyle: Theme.of(context).textTheme.subtitle1,
+                      hintStyle: Theme.of(context).textTheme.titleMedium,
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.blue),
                       ),

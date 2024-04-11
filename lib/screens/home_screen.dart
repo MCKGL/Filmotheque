@@ -17,8 +17,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // late is used to declare a non-nullable variable that will be initialized later.
   late Future<List<Movie>> trendingMovies;
-  late Future<List<Movie>> topRatedMovies;
-  late Future<List<Movie>> upcomingMovies;
   late Future<List<Movie>> watchedMovies;
   late Future<List<Movie>> toWatchedMovies;
 
@@ -26,8 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     trendingMovies = MovieService().getTrendingMovies();
-    topRatedMovies = MovieService().getTopRatedMovies();
-    upcomingMovies = MovieService().getUpcomingMovies();
     watchedMovies = MovieService().getWatchedMovies();
     toWatchedMovies = MovieService().getToWatchMovies();
   }
@@ -94,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.only(top: 8.0),
+                  padding: const EdgeInsets.only(top: 8.0),
                 child: SizedBox(
                   child: FutureBuilder(
                       future: toWatchedMovies,
@@ -125,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.only(top: 8.0),
+                  padding: const EdgeInsets.only(top: 8.0),
                 child: SizedBox(
                   child: FutureBuilder(
                       future: watchedMovies,

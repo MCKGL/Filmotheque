@@ -26,6 +26,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Collection'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       drawer: const AppDrawer(),
       body: FutureBuilder<List<Movie>>(

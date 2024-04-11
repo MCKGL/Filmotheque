@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:filmotheque/screens/details_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../env.dart';
 
 class SliderWidget extends StatelessWidget {

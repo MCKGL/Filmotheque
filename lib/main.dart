@@ -14,9 +14,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Filmothèque',
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData(
+        colorScheme: const ColorScheme.dark().copyWith(
+          primary: Colours.ratingColor,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colours.btnColor),
+          ),
+        ),
         scaffoldBackgroundColor: Colours.scaffoldBgColor,
-        useMaterial3: true,
       ),
       home: const LoginScreen(),
     );

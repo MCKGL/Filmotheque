@@ -26,6 +26,7 @@ class _WatchedScreenState extends State<WatchedScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Watched Movies'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       drawer: const AppDrawer(),
       body: FutureBuilder<List<Movie>>(
