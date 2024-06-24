@@ -14,7 +14,7 @@ This is a movie management application built with Flutter. It utilizes the TMDB 
 - Session ID validity management (TMDB only provides a session ID valid for one hour).
 - Better user connection management: currently the user must reconnect each time. This must be thought out with the previous point (at the risk of seeing the list management bug).
 - Better management of adding to a list: currently the user must leave and return to their list to see it updated.
-- Add a new list, update information on the list, delete list.
+- Add a new list, update informations on the list, delete list.
 
 For more information on how to get started with this project, please refer to the [online documentation](https://docs.flutter.dev/), which offers tutorials, samples, guidance on mobile development, and a full API reference.
 
